@@ -115,15 +115,18 @@ tr:hover td{background:var(--card2);}
 <div id="toast-root"></div>
 
 <script>
-const SUPABASE_URL = 'https://zzqkmujomufptafbzxjo.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6cWttdWpvbXVmcHRhZmJ6eGpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3NTY4MzgsImV4cCI6MjA5ODMzMjgzOH0.K7L66I23Ugc0f1QLmmynpwbKd6DuLmWDZtszdLkvFyM';
+// ===== UPDATED SUPABASE CREDENTIALS =====
+const SUPABASE_URL = 'https://vwyambddhlgrgtqmxwik.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_8jM7dTNHTs80u34uzVc3Kg_LUDFDW_A';
+// =========================================
+
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const THEMES = {green:'#22c55e',blue:'#3b82f6',purple:'#a855f7',red:'#ef4444',orange:'#f97316',pink:'#ec4899',teal:'#14b8a6',gold:'#eab308'};
 const TYPE_LABEL = {manga:'مانجا',manhwa:'مانهوا',manhua:'مانهوا صينية'};
 const state = {user:null, profile:null};
 
 function toast(msg){ const r=document.getElementById('toast-root'); const e=document.createElement('div'); e.className='toast'; e.textContent=msg; r.appendChild(e); setTimeout(()=>e.remove(),2400); }
-function escapeHtml(s){ return (s||'').toString().replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escapeHtml(s){ return (s||'').toString().replace(/[&<>"']/g,c=>({'&':'&','<':'<','>':'>','"':'"',"'":'''}[c])); }
 function go(r){ location.hash=r; }
 function closeModal(){ document.getElementById('modal-root').innerHTML=''; }
 function openModal(html){ document.getElementById('modal-root').innerHTML=`<div class="overlay" onclick="if(event.target===this)closeModal()"><div class="modal-box">${html}</div></div>`; }
@@ -150,7 +153,7 @@ function renderDrawer(){
   ${items.map(([r,i,l])=>`<a href="${r}" onclick="toggleDrawer()"><i class="${i}"></i>${l}</a>`).join('')}
   <div style="height:1px;background:var(--border);margin:10px 0"></div>
   <a href="#" onclick="doLogout();return false;"><i class="ri-logout-box-line" style="color:var(--danger)"></i>تسجيل الخروج</a>
-  <a href="user.html" target="_blank"><i class="ri-external-link-line"></i>فتح التطبيق</a>`;
+  <a href="index.html" target="_blank"><i class="ri-external-link-line"></i>فتح التطبيق</a>`;
 }
 
 async function refreshSession(){
@@ -275,7 +278,7 @@ async function loadSeriesTable(q){
     <td>${s.status==='ongoing'?'<span class="chip">مستمر</span>':s.status==='completed'?'<span class="chip gold">مكتمل</span>':'<span class="chip warn">قريباً</span>'}</td>
     <td>${s.views||0}</td><td>${(s.rating_avg||0).toFixed(1)}</td>
     <td><div class="row">
-      <button class="btn sm ghost" onclick='openSeriesForm(${JSON.stringify(s).replace(/'/g,"&#39;")})'><i class="ri-edit-line"></i></button>
+      <button class="btn sm ghost" onclick='openSeriesForm(${JSON.stringify(s).replace(/'/g,"'")})'><i class="ri-edit-line"></i></button>
       <a class="btn sm outline" href="#/series/${s.id}/chapters"><i class="ri-file-list-line"></i>فصول</a>
       <button class="btn sm danger" onclick="deleteSeries('${s.id}')"><i class="ri-delete-bin-line"></i></button>
     </div></td>
@@ -340,7 +343,7 @@ async function loadChaptersTable(seriesId){
       <td>${c.access_type==='points'?c.points_price:'-'}</td>
       <td>${new Date(c.release_date).toLocaleDateString('ar')}</td><td>${count||0} صفحة</td>
       <td><div class="row">
-        <button class="btn sm ghost" onclick='openChapterForm("${seriesId}",${JSON.stringify(c).replace(/'/g,"&#39;")})'><i class="ri-edit-line"></i></button>
+        <button class="btn sm ghost" onclick='openChapterForm("${seriesId}",${JSON.stringify(c).replace(/'/g,"'")})'><i class="ri-edit-line"></i></button>
         <button class="btn sm outline" onclick="managePages('${c.id}','${seriesId}')"><i class="ri-image-line"></i>صور</button>
         <button class="btn sm danger" onclick="deleteChapter('${c.id}','${seriesId}')"><i class="ri-delete-bin-line"></i></button>
       </div></td>
@@ -359,8 +362,7 @@ function openChapterForm(seriesId,c){
     <option value="points" ${c.access_type==='points'?'selected':''}>بالنقاط</option>
   </select></div></div>
   <div class="field" id="pts-price-field" style="${c.access_type==='points'?'':'display:none'}">
-    <label>سعر الفتح بالنقاط</label><div class="input-wrap"><input id="cf-pts" type="number" value="${c.points_price||0}" min="0"></div>
-  </div>
+    <label>سعر الفتح بالنقاط</label><div class="input-wrap"><input id="cf-pts" type="number" value="${c.points_price||0}" min="0"></div></div>
   <div class="field"><label>تاريخ النشر</label><div class="input-wrap"><input id="cf-date" type="datetime-local" value="${c.release_date?new Date(c.release_date).toISOString().slice(0,16):''}"></div></div>
   <div class="row" style="gap:10px;margin-top:6px"><button class="btn outline" style="flex:1" onclick="closeModal()">إلغاء</button>
   <button class="btn" style="flex:1" onclick="saveChapter('${seriesId}','${c.id||''}')">حفظ</button></div>`);
@@ -519,7 +521,7 @@ async function loadUsers(q){
     <td><b style="color:var(--gold)">${u.points||0}</b></td>
     <td>${subChip(u.subscription_status)}</td>
     <td><div class="row">
-      <button class="btn sm ghost" onclick='openUserEdit(${JSON.stringify(u).replace(/'/g,"&#39;")})'><i class="ri-edit-line"></i></button>
+      <button class="btn sm ghost" onclick='openUserEdit(${JSON.stringify(u).replace(/'/g,"'")})'><i class="ri-edit-line"></i></button>
       <button class="btn sm gold" onclick="openAdjustPoints('${u.id}','${escapeHtml(u.username||u.email||'')}')"><i class="ri-coin-line"></i></button>
     </div></td>
   </tr>`).join('')}</table></div>` : `<div class="empty-state"><i class="ri-team-line"></i><h3>لا يوجد مستخدمون</h3></div>`;
@@ -626,7 +628,7 @@ route('#/plans',async()=>{
   <div class="card" style="margin-bottom:12px"><div class="row between">
     <div><b>${escapeHtml(p.name)} <span class="badge" style="background:${p.badge_color||'#22c55e'}">${escapeHtml(p.badge_text||'مميز')}</span></b>
     <p class="muted" style="font-size:12px;margin:4px 0">${p.price} ${p.currency} / ${p.duration_days} يوم</p></div>
-    <div class="row"><button class="btn sm ghost" onclick='openPlanForm(${JSON.stringify(p).replace(/'/g,"&#39;")})'><i class="ri-edit-line"></i></button>
+    <div class="row"><button class="btn sm ghost" onclick='openPlanForm(${JSON.stringify(p).replace(/'/g,"'")})'><i class="ri-edit-line"></i></button>
     <button class="btn sm danger" onclick="deletePlan('${p.id}')"><i class="ri-delete-bin-line"></i></button></div>
   </div></div>`).join('') : `<div class="empty-state"><i class="ri-price-tag-3-line"></i><h3>لا توجد باقات</h3></div>`;
 });
@@ -665,7 +667,7 @@ route('#/avatar-store',async()=>{
     <img src="${a.image_url}" style="width:100%;height:100px;object-fit:cover;border-radius:10px;margin-bottom:8px">
     <div style="font-size:12px;font-weight:700;margin-bottom:4px">${escapeHtml(a.name)}</div>
     <div style="font-size:11px;color:var(--gold);margin-bottom:8px">${a.price_points} نقطة</div>
-    <div class="row" style="gap:6px"><button class="btn sm ghost" onclick='openAvatarForm(${JSON.stringify(a).replace(/'/g,"&#39;")})'><i class="ri-edit-line"></i></button>
+    <div class="row" style="gap:6px"><button class="btn sm ghost" onclick='openAvatarForm(${JSON.stringify(a).replace(/'/g,"'")})'><i class="ri-edit-line"></i></button>
     <button class="btn sm danger" onclick="deleteAvatar('${a.id}')"><i class="ri-delete-bin-line"></i></button></div>
   </div>`).join('')}</div>` : `<div class="empty-state"><i class="ri-user-star-line"></i><h3>لا توجد بروفيلات</h3></div>`;
 });
@@ -704,7 +706,7 @@ route('#/news',async()=>{
   document.getElementById('news-table').innerHTML=(data&&data.length)?data.map(n=>`
   <div class="card" style="margin-bottom:12px"><div class="row between">
     <div><b>${n.is_pinned?'📌 ':''}${escapeHtml(n.title)}</b><p class="muted" style="font-size:12px;margin:4px 0">${new Date(n.created_at).toLocaleDateString('ar')}</p></div>
-    <div class="row"><button class="btn sm ghost" onclick='openNewsForm(${JSON.stringify(n).replace(/'/g,"&#39;")})'><i class="ri-edit-line"></i></button>
+    <div class="row"><button class="btn sm ghost" onclick='openNewsForm(${JSON.stringify(n).replace(/'/g,"'")})'><i class="ri-edit-line"></i></button>
     <button class="btn sm danger" onclick="deleteNews('${n.id}')"><i class="ri-delete-bin-line"></i></button></div>
   </div></div>`).join('') : `<div class="empty-state"><i class="ri-newspaper-line"></i><h3>لا توجد أخبار</h3></div>`;
 });
@@ -725,7 +727,8 @@ route('#/polls',async()=>{
 });
 function openPollForm(){ openModal(`<h3>إضافة تصويت</h3>
   <div class="field"><label>السؤال</label><div class="input-wrap"><input id="poll-q"></div></div>
-  <div class="field"><label>الخيارات (كل خيار في سطر)</label><textarea class="ta" id="poll-opts" placeholder="خيار 1&#10;خيار 2"></textarea></div>
+  <div class="field"><label>الخيارات (كل خيار في سطر)</label><textarea class="ta" id="poll-opts" placeholder="خيار 1
+خيار 2"></textarea></div>
   <div class="row" style="gap:10px"><button class="btn outline" style="flex:1" onclick="closeModal()">إلغاء</button><button class="btn" style="flex:1" onclick="savePoll()">نشر</button></div>`); }
 async function savePoll(){ const question=document.getElementById('poll-q').value.trim(); const options=document.getElementById('poll-opts').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean); if(!question||options.length<2) return toast('أدخل سؤالاً وخيارين على الأقل'); const {error}=await sb.from('polls').insert({question,options,is_active:true}); if(error) return toast('تعذر النشر'); closeModal(); toast('تم النشر'); renderRoute(); }
 async function deletePoll(id){ if(!confirm('حذف؟'))return; await sb.from('polls').delete().eq('id',id); toast('تم الحذف'); renderRoute(); }
@@ -754,7 +757,7 @@ route('#/ads',async()=>{
   <div class="card" style="margin-bottom:12px"><div class="row between">
     <div><b>${ad.placement}</b> <span class="chip gray">${escapeHtml(ad.network)}</span> <span class="${ad.is_active?'chip':'chip gray'}">${ad.is_active?'مفعّل':'متوقف'}</span>
     <p class="muted" style="font-size:11.5px;margin:6px 0;max-width:350px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(ad.code)}</p></div>
-    <div class="row"><button class="btn sm ghost" onclick='openAdForm(${JSON.stringify(ad).replace(/'/g,"&#39;")})'><i class="ri-edit-line"></i></button>
+    <div class="row"><button class="btn sm ghost" onclick='openAdForm(${JSON.stringify(ad).replace(/'/g,"'")})'><i class="ri-edit-line"></i></button>
     <button class="btn sm danger" onclick="deleteAd('${ad.id}')"><i class="ri-delete-bin-line"></i></button></div>
   </div></div>`).join('') : `<div class="empty-state"><i class="ri-advertisement-line"></i><h3>لا توجد أكواد</h3></div>`;
 });
@@ -785,7 +788,7 @@ route('#/direct-links',async()=>{
   <tr><th>العنوان</th><th>الرابط</th><th>النقرات</th><th>الحالة</th><th>إجراءات</th></tr>
   ${data.map(l=>`<tr><td>${escapeHtml(l.title)}</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(l.url)}</td>
   <td><b style="color:var(--accent)">${l.clicks||0}</b></td><td>${l.is_active?'<span class="chip">مفعّل</span>':'<span class="chip gray">متوقف</span>'}</td>
-  <td><div class="row"><button class="btn sm ghost" onclick='openLinkForm(${JSON.stringify(l).replace(/'/g,"&#39;")})'><i class="ri-edit-line"></i></button>
+  <td><div class="row"><button class="btn sm ghost" onclick='openLinkForm(${JSON.stringify(l).replace(/'/g,"'")})'><i class="ri-edit-line"></i></button>
   <button class="btn sm danger" onclick="deleteLink('${l.id}')"><i class="ri-delete-bin-line"></i></button></div></td></tr>`).join('')}</table></div>` : `<div class="empty-state"><i class="ri-link"></i><h3>لا توجد روابط</h3></div>`;
 });
 function openLinkForm(l){ l=l||{}; openModal(`<h3>${l.id?'تعديل':'إضافة'} رابط مباشر</h3>
