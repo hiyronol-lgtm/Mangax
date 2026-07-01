@@ -162,7 +162,7 @@ setTheme(localStorage.getItem('mangax_theme') || 'green');
 
 function toast(msg){ const root=document.getElementById('toast-root'); const el=document.createElement('div'); el.className='toast'; el.textContent=msg; root.appendChild(el); setTimeout(()=>el.remove(),2400); }
 function go(route, params={}){ state.params = params; location.hash = route; }
-function escapeHtml(s){ return (s||'').toString().replace(/[&<>"']/g, c=>({'&':'&','<':'<','>':'>','"':'"',"'":'''}[c])); }
+function escapeHtml(s){ return (s||'').toString().replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function timeAgo(dateStr){
   const d = new Date(dateStr); const diff = (Date.now()-d.getTime())/1000;
   if(diff<60) return 'الآن'; if(diff<3600) return Math.floor(diff/60)+' د'; if(diff<86400) return Math.floor(diff/3600)+' س';
