@@ -826,13 +826,13 @@ route('#/points-store', async ()=>{
   if(!requireAuth()) return;
   await refreshSession();
   const {data:settings} = await sb.from('site_settings').select('*').eq('key','points_price').single();
-  const price = settings?.value || {currency:'USD', price_per_point:0.01};
+  const price = settings?.value || {currency:'USD', price_per_point:1};
   document.getElementById('app').innerHTML = topbarSimple('متجر النقاط',{search:false}) + `
   <div style="padding:0 16px">
     <div class="card" style="background:linear-gradient(135deg,var(--gold),#fbbf24);border-radius:18px;padding:20px;text-align:center;margin-bottom:16px">
       <p style="color:#3a2a00;font-size:12.5px;font-weight:700">رصيدك الحالي</p>
       <h2 style="color:#3a2a00;font-size:34px;margin:4px 0;font-weight:900"><i class="ri-coin-fill"></i> ${myPoints()}</h2>
-      <p style="color:#3a2a00;font-size:11px"> سعر 100 نقطة دولار: ${price.price_per_poin} ${price.currenc}</p>
+      <p style="color:#3a2a00;font-size:11px"> السعر لكل 100: ${price.price_per_point} ${price.currency}</p>
     </div>
     <div class="grid2" style="margin-bottom:16px">
       <button class="btn gold" onclick="go('#/buy-points')"><i class="ri-shopping-cart-2-line"></i> شراء نقاط</button>
