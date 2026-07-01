@@ -826,7 +826,7 @@ route('#/points-store', async ()=>{
   if(!requireAuth()) return;
   await refreshSession();
   const {data:settings} = await sb.from('site_settings').select('*').eq('key','points_price').single();
-  const price = settings?.value || {currency:'SAR', price_per_point:1};
+  const price = settings?.value || {currency:'USD', price_per_point:0.01};
   document.getElementById('app').innerHTML = topbarSimple('متجر النقاط',{search:false}) + `
   <div style="padding:0 16px">
     <div class="card" style="background:linear-gradient(135deg,var(--gold),#fbbf24);border-radius:18px;padding:20px;text-align:center;margin-bottom:16px">
