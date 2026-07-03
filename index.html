@@ -26,7 +26,7 @@ input,select,textarea{font-family:inherit;} img{display:block;max-width:100%;}
 .statusbar{height:env(safe-area-inset-top,12px);}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 8px;}
 .topbar h1{font-size:19px;font-weight:800;margin:0;}
-.icon-btn{width:38px;height:38px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:18px;position:relative;}
+.icon-btn{width:38px;height:38px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:18px;position:relative;flex-shrink:0;}
 .icon-btn .dot{position:absolute;top:6px;left:6px;width:8px;height:8px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);}
 .row{display:flex;align-items:center;gap:10px;}
 .between{justify-content:space-between;}
@@ -41,7 +41,7 @@ input,select,textarea{font-family:inherit;} img{display:block;max-width:100%;}
 .btn.gold{background:linear-gradient(90deg,var(--gold),#fbbf24);color:#3a2a00;}
 .btn.sm{padding:10px;font-size:13px;width:auto;}
 .btn[disabled]{opacity:.5;}
-.btn-icon-circle{width:42px;height:42px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--text);}
+.btn-icon-circle{width:42px;height:42px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--text);flex-shrink:0;}
 .field{margin-bottom:14px;}
 .field label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px;}
 .input-wrap{display:flex;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0 12px;}
@@ -97,7 +97,7 @@ textarea.ta{width:100%;background:var(--card);border:1px solid var(--border);bor
 .spinner{width:30px;height:30px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:sp 0.7s linear infinite;margin:40px auto;}
 @keyframes sp{to{transform:rotate(360deg)}}
 .divider{height:1px;background:var(--border);margin:14px 0;}
-.avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;background:var(--card2);}
+.avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;background:var(--card2);flex-shrink:0;}
 .stars{color:#fbbf24;font-size:13px;}
 .tab-pills{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px;}
 .pill{padding:8px 16px;border-radius:20px;background:var(--card);color:var(--muted);font-size:12.5px;font-weight:700;white-space:nowrap;border:1px solid var(--border);}
@@ -121,33 +121,52 @@ textarea.ta{width:100%;background:var(--card);border:1px solid var(--border);bor
 .reply-box input{flex:1;background:var(--card);border:1px solid var(--border);border-radius:30px;padding:11px 16px;color:var(--text);outline:none;}
 .send-btn{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#06140a;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .locked-banner{background:var(--card);border:1px dashed var(--accent);border-radius:var(--radius);padding:20px;text-align:center;margin:16px;}
-/* reader */
 .reader-page{width:100%;display:block;background:#050505;}
 .reader-toolbar{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;background:rgba(20,21,23,.92);backdrop-filter:blur(6px);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0));display:flex;justify-content:space-between;align-items:center;z-index:60;}
 .reader-top{position:fixed;top:0;left:0;right:0;max-width:480px;margin:0 auto;background:rgba(20,21,23,.92);backdrop-filter:blur(6px);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;z-index:60;}
 .page-nav-btn{width:46px;height:46px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:20px;}
 .avatar-store-item{position:relative;text-align:center;}
 .avatar-store-item img{width:100%;aspect-ratio:1;border-radius:14px;object-fit:cover;background:var(--card);}
-.avatar-store-item .price{font-size:11px;margin-top:6px;color:var(--gold);font-weight:800;}
+.avatar-store-item.locked img{opacity:.35;filter:grayscale(1);}
+.avatar-store-item .price{font-size:10.5px;margin-top:6px;color:var(--gold);font-weight:800;}
 .tx-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.tx-row:last-child{border-bottom:none;}
+/* forum */
+.forum-card{background:var(--card);border-radius:14px;margin-bottom:10px;overflow:hidden;border:1px solid var(--border);}
+.forum-card.pinned{border-color:var(--accent);}
+.forum-thumb{width:100%;height:140px;object-fit:cover;}
+.donation-row{display:flex;align-items:center;gap:8px;background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.2);border-radius:12px;padding:10px 12px;margin-bottom:14px;}
+/* polls */
+.poll-card{background:var(--card);border-radius:16px;overflow:hidden;margin-bottom:14px;}
+.poll-image{width:100%;height:150px;object-fit:cover;}
+/* points store */
+.points-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--gold),#fbbf24);border-radius:20px;padding:26px 20px;text-align:center;margin-bottom:18px;}
+.points-hero-icon{position:absolute;font-size:130px;opacity:.15;top:-24px;left:-14px;color:#3a2a00;}
+.points-action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.points-action-btn{background:var(--card);border-radius:14px;padding:16px 12px;text-align:center;cursor:pointer;border:1px solid var(--border);}
+.points-action-btn i{font-size:24px;color:var(--accent);display:block;margin-bottom:8px;}
+.points-action-btn b{display:block;font-size:12.5px;margin-bottom:2px;}
+.points-action-btn span{font-size:10.5px;color:var(--muted);}
+/* subscriptions */
+.tier-card{margin-bottom:16px;}
 </style>
 </head>
 <body>
 <div id="shell"><div id="app"></div><div id="modal-root"></div><div id="toast-root"></div></div>
 <script>
 /* =========================================================
-   MANGAX - USER APP
+   MANGAX v2 - USER APP
    ========================================================= */
-// ===== UPDATED SUPABASE CREDENTIALS =====
 const SUPABASE_URL = 'https://vwyambddhlgrgtqmxwik.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_8jM7dTNHTs80u34uzVc3Kg_LUDFDW_A';
-// =========================================
-
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const THEMES = {green:{a:'#22c55e',d:'#15803d'},blue:{a:'#3b82f6',d:'#1d4ed8'},purple:{a:'#a855f7',d:'#7e22ce'},red:{a:'#ef4444',d:'#b91c1c'},orange:{a:'#f97316',d:'#c2410c'},pink:{a:'#ec4899',d:'#be185d'},teal:{a:'#14b8a6',d:'#0f766e'},gold:{a:'#eab308',d:'#a16207'}};
 const GENRES = ['أكشن','دراما','كوميدي','مغامرة','رومانسي','خيال علمي','رعب','غموض','إيسيكاي','شريحة من الحياة','سحر','رياضة','بطل خارق'];
 const TYPE_LABEL = {manga:'مانجا',manhwa:'مانهوا',manhua:'مانهوا صينية'};
+const TIER_NAMES = {1:'باقة المحارب',2:'باقة الأساطير',3:'باقة الأسلاف'};
+const TIER_ICONS = {1:'ri-sword-line',2:'ri-vip-crown-2-fill',3:'ri-crown-2-fill'};
+const PROFILE_BADGE_FIELDS = 'username,avatar_url,custom_badge_color,subscription_status,subscription_end,subscription_plans(badge_text,badge_color,tier)';
 
 const state = { session:null, user:null, profile:null, route:'#/splash', params:{}, listFilters:{sort:'popularity', type:'all', genre:'all'}, readerPages:[], readerIdx:0, readerMode:'scroll', readerDir:'rtl' };
 
@@ -172,14 +191,30 @@ function starsHtml(score){ score=score||0; const full=Math.round(score/2); let h
 function closeModal(){ document.getElementById('modal-root').innerHTML=''; }
 function openSheet(html){ document.getElementById('modal-root').innerHTML = `<div class="overlay" onclick="if(event.target===this)closeModal()"><div class="sheet">${html}</div></div>`; }
 function openCenter(html){ document.getElementById('modal-root').innerHTML = `<div class="overlay center-modal" onclick="if(event.target===this)closeModal()"><div class="box-modal">${html}</div></div>`; }
+
+function badgeHtml(p){
+  if(!p) return '';
+  const active = p.subscription_status==='active' && p.subscription_end && new Date(p.subscription_end) > new Date();
+  if(!active || !p.subscription_plans) return '';
+  const color = p.custom_badge_color || p.subscription_plans.badge_color || '#22c55e';
+  const text = p.subscription_plans.badge_text || 'مميز';
+  return `<span class="badge" style="background:${color}">${escapeHtml(text)}</span>`;
+}
+function isAdminUser(){ return state.profile?.role==='admin'; }
+function myTier(){
+  if(!state.profile) return 0;
+  if(state.profile.subscription_status==='active' && state.profile.subscription_end && new Date(state.profile.subscription_end)>new Date()){
+    return state.profile.subscription_plans?.tier || 0;
+  }
+  return 0;
+}
+function effectiveTier(){ return isAdminUser() ? 3 : myTier(); }
+
 async function renderAdSlot(elId, placement){
   const el = document.getElementById(elId); if(!el) return;
+  if(effectiveTier()>=1) return; // إزالة إعلانات Adsterra لمشتركي المحارب فأعلى
   const {data} = await sb.from('ads_codes').select('*').eq('placement',placement).eq('is_active',true).limit(1);
   if(data && data[0]){ el.innerHTML = data[0].code; el.querySelectorAll('script').forEach(old=>{ const s=document.createElement('script'); [...old.attributes].forEach(a=>s.setAttribute(a.name,a.value)); s.textContent=old.textContent; old.replaceWith(s); }); }
-}
-function badgeHtml(plan){
-  if(!plan) return '';
-  return `<span class="badge" style="background:${plan.badge_color||'#22c55e'}">${escapeHtml(plan.badge_text||'مميز')}</span>`;
 }
 
 /* ---------------- AUTH ---------------- */
@@ -200,6 +235,14 @@ sb.auth.onAuthStateChange((event, session)=>{
   state.session = session; state.user = session?.user || null;
   if(event === 'PASSWORD_RECOVERY'){ go('#/reset-password'); }
 });
+
+async function claimMonthlyBonusIfEligible(){
+  if(!state.user) return;
+  try{
+    const {data} = await sb.rpc('claim_monthly_bonus');
+    if(data?.awarded){ toast(data.msg); await refreshSession(); }
+  }catch(e){ /* silent */ }
+}
 
 /* ---------------- LAYOUT HELPERS ---------------- */
 function bottomNav(active){
@@ -281,26 +324,24 @@ async function renderRoute(){
 }
 window.addEventListener('hashchange', renderRoute);
 
-/* ================= SCREENS ================= */
+/* ================= AUTH SCREENS ================= */
 route('#/splash', async ()=>{
   document.getElementById('app').innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;gap:14px">
     <div style="font-size:54px;color:var(--accent)"><i class="ri-book-read-fill"></i></div><div class="spinner"></div></div>`;
   await refreshSession();
   setTimeout(()=>{ go(isLoggedIn() ? '#/home' : '#/welcome'); }, 600);
 });
-
 route('#/welcome', async ()=>{
   document.getElementById('app').innerHTML = `
   <div style="height:60vh;background:linear-gradient(160deg,#1a3a2a,#0b0c0d);display:flex;align-items:center;justify-content:center;">
     <i class="ri-book-read-fill" style="font-size:90px;color:var(--accent)"></i></div>
   <div style="padding:24px;text-align:center">
     <h1 style="font-size:24px;font-weight:900;margin-bottom:8px">مرحباً بك في Mangax</h1>
-    <p class="muted" style="margin-bottom:24px">اقرأ المانجا والمانهوا بفصول جديدة يومياً، اجمع النقاط، نافس في التصويتات وانضم للمنتدى الحصري</p>
+    <p class="muted" style="margin-bottom:24px">اقرأ المانجا والمانهوا بفصول جديدة يومياً، اجمع النقاط، شارك بالتصويتات وانضم للمنتدى</p>
     <a class="btn" href="#/signup">إنشاء حساب</a><div style="height:10px"></div>
     <a class="btn outline" href="#/login">لدي حساب بالفعل</a>
   </div>`;
 });
-
 route('#/login', async ()=>{
   document.getElementById('app').innerHTML = `${backHeader('تسجيل الدخول')}
   <div style="padding:10px 20px">
@@ -318,9 +359,8 @@ async function doLogin(){
   if(!email||!password) return toast('أكمل البيانات');
   const {error} = await sb.auth.signInWithPassword({email,password});
   if(error) return toast('بيانات الدخول غير صحيحة');
-  await refreshSession(); toast('تم تسجيل الدخول'); go('#/home');
+  await refreshSession(); toast('تم تسجيل الدخول'); claimMonthlyBonusIfEligible(); go('#/home');
 }
-
 route('#/signup', async ()=>{
   document.getElementById('app').innerHTML = `${backHeader('إنشاء حساب')}
   <div style="padding:10px 20px">
@@ -340,7 +380,6 @@ async function doSignup(){
   toast('تم إنشاء الحساب!'); await refreshSession();
   if(isLoggedIn()) go('#/interests'); else go('#/login');
 }
-
 route('#/forgot', async ()=>{
   document.getElementById('app').innerHTML = `${backHeader('استعادة كلمة المرور')}
   <div style="padding:10px 20px">
@@ -368,7 +407,6 @@ async function doResetPass(){
   if(error) return toast('تعذر تحديث كلمة المرور');
   toast('تم تحديث كلمة المرور بنجاح'); go('#/home');
 }
-
 route('#/interests', async ()=>{
   document.getElementById('app').innerHTML = `${backHeader('اختر اهتماماتك')}
   <p class="muted" style="padding:0 20px">اختر اهتماماتك لنرشّح لك أفضل المحتوى</p>
@@ -387,10 +425,19 @@ async function saveInterests(){
 /* ---------------- HOME ---------------- */
 route('#/home', async ()=>{
   await refreshSession();
+  claimMonthlyBonusIfEligible();
   const app = document.getElementById('app');
   app.innerHTML = topbarSimple('Mangax') + `<div id="hero-slot"><div class="spinner"></div></div>
   <div id="ad-home" class="ad-slot"></div>
-  <div id="top-hits-slot"></div><div id="new-ch-slot"></div><div id="news-slot"></div>
+  <div class="section"><div class="tab-pills">
+    <button class="pill" onclick="state.listFilters={sort:'popularity',type:'manga',genre:'all'};go('#/series-list')">مانجا</button>
+    <button class="pill" onclick="state.listFilters={sort:'popularity',type:'manhwa',genre:'all'};go('#/series-list')">مانهوا</button>
+    <button class="pill" onclick="state.listFilters={sort:'popularity',type:'manhua',genre:'all'};go('#/series-list')">مانهوا صينية</button>
+  </div></div>
+  <div id="top-hits-slot"></div>
+  <div id="recommended-slot"></div>
+  <div id="new-ch-slot"></div>
+  <div id="news-slot"></div>
   ${bottomNav('#/home')}`;
   renderAdSlot('ad-home','home_top');
   const {data:featured} = await sb.from('series').select('*').eq('is_featured',true).limit(1);
@@ -406,10 +453,19 @@ route('#/home', async ()=>{
         </div>
       </div></div>` : `<div class="empty-state"><i class="ri-book-read-line"></i><p>لا يوجد محتوى بعد</p></div>`;
   const {data:top} = await sb.from('series').select('*').order('views',{ascending:false}).limit(10);
-  document.getElementById('top-hits-slot').innerHTML = `<div class="section"><div class="section-head"><h3>الأعلى تقييماً</h3><a href="#/series-list?type=top">عرض الكل</a></div>
+  document.getElementById('top-hits-slot').innerHTML = `<div class="section"><div class="section-head"><h3>الأعلى تقييماً</h3><a href="#/series-list?type=top" onclick="state.listFilters={sort:'popularity',type:'all',genre:'all'}">عرض الكل</a></div>
     <div class="hscroll">${(top||[]).map((s,i)=>posterCard(s,i)).join('') || '<p class="muted">لا توجد بيانات</p>'}</div></div>`;
+  if(state.user && state.profile?.interests?.length){
+    const {data:pool} = await sb.from('series').select('*').order('views',{ascending:false}).limit(50);
+    const interests = state.profile.interests;
+    const matched = (pool||[]).filter(s=>(s.genres||[]).some(g=>interests.includes(g))).slice(0,10);
+    if(matched.length){
+      document.getElementById('recommended-slot').innerHTML = `<div class="section"><div class="section-head"><h3><i class="ri-sparkling-2-fill" style="color:var(--accent)"></i> مقترح لك</h3></div>
+      <div class="hscroll">${matched.map(s=>posterCard(s)).join('')}</div></div>`;
+    }
+  }
   const {data:newest} = await sb.from('series').select('*').order('created_at',{ascending:false}).limit(10);
-  document.getElementById('new-ch-slot').innerHTML = `<div class="section"><div class="section-head"><h3>أحدث الإصدارات</h3><a href="#/series-list?type=new">عرض الكل</a></div>
+  document.getElementById('new-ch-slot').innerHTML = `<div class="section"><div class="section-head"><h3>أحدث الإصدارات</h3><a href="#/series-list?type=new" onclick="state.listFilters={sort:'newest',type:'all',genre:'all'}">عرض الكل</a></div>
     <div class="hscroll">${(newest||[]).map(s=>posterCard(s)).join('') || '<p class="muted">لا توجد بيانات</p>'}</div></div>`;
   const {data:news} = await sb.from('news').select('*').order('created_at',{ascending:false}).limit(3);
   document.getElementById('news-slot').innerHTML = `<div class="section"><div class="section-head"><h3>أخبار وإصدارات جديدة</h3><a href="#/news">عرض الكل</a></div>
@@ -568,10 +624,12 @@ route('#/series/:id', async (p)=>{
     <div class="section-head"><h3>التعليقات (${commentCount||0})</h3><a href="#/comments/${s.id}">عرض الكل</a></div>
   </div>${bottomNav('')}`;
   document.getElementById('chapters-wrap').innerHTML = (chapters&&chapters.length) ? chapters.map(c=>{
-    const unlocked = c.access_type==='free' || (c.access_type==='subscribers' && isSubscriber()) || (c.access_type==='points' && myPurchases.includes(c.id)) || (state.profile?.role==='admin');
+    const unlocked = c.access_type==='free' || (c.access_type==='subscribers' && isSubscriber()) || (c.access_type==='points' && myPurchases.includes(c.id)) || isAdminUser();
     let lockChip = '';
     if(!unlocked){
       lockChip = c.access_type==='subscribers' ? `<span class="chip lock"><i class="ri-vip-crown-line"></i> للمشتركين</span>` : `<span class="chip gold"><i class="ri-coin-line"></i> ${c.points_price} نقطة</span>`;
+    } else if(c.direct_link_id){
+      lockChip = `<span class="chip gray"><i class="ri-link"></i> يتطلب متابعة رابط</span>`;
     }
     return `<div class="list-card" onclick="openChapter('${c.id}')">
       <div class="btn-icon-circle" style="background:var(--accent-soft);color:var(--accent)"><i class="ri-file-text-fill"></i></div>
@@ -609,20 +667,33 @@ async function submitRating(seriesId){
   closeModal(); toast('شكراً لتقييمك!'); renderRoute();
 }
 
-/* ---------------- COMMENTS ---------------- */
+/* ---------------- COMMENTS (+ التبرعات ضمن نفس الخلاصة) ---------------- */
 route('#/comments/:seriesId', async (p)=>{
-  const {data:comments} = await sb.from('comments').select('*, profiles(username,avatar_url,subscription_plans(badge_text,badge_color))').eq('series_id',p.seriesId).order('created_at',{ascending:false});
-  document.getElementById('app').innerHTML = `${backHeader('التعليقات ('+(comments?.length||0)+')')}
-  <div style="padding:10px 16px 80px" id="comments-list">
-    ${(comments&&comments.length) ? comments.map(c=>`
-    <div class="row" style="align-items:flex-start;gap:10px;margin-bottom:18px">
+  document.getElementById('app').innerHTML = `${backHeader('التعليقات')}<div id="comments-list" style="padding:10px 16px 80px"><div class="spinner"></div></div>
+  <div class="reply-box"><input id="comment-input" placeholder="أضف تعليقاً..."><button class="send-btn" onclick="submitComment('${p.seriesId}')"><i class="ri-send-plane-fill"></i></button></div>`;
+  const {data:comments} = await sb.from('comments').select(`*, profiles(${PROFILE_BADGE_FIELDS})`).eq('series_id',p.seriesId).order('created_at',{ascending:false});
+  const {data:donations} = await sb.from('chapter_donations').select(`*, profiles(${PROFILE_BADGE_FIELDS}), chapters!inner(chapter_number,series_id)`).eq('chapters.series_id',p.seriesId).order('created_at',{ascending:false});
+  const feed = [
+    ...(comments||[]).map(c=>({type:'comment', created_at:c.created_at, data:c})),
+    ...(donations||[]).map(d=>({type:'donation', created_at:d.created_at, data:d})),
+  ].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+  document.getElementById('comments-list').innerHTML = feed.length ? feed.map(item=>{
+    if(item.type==='donation'){
+      const d = item.data;
+      return `<div class="donation-row">
+        <i class="ri-hand-heart-fill" style="color:var(--gold);font-size:18px"></i>
+        <span style="font-size:12px"><b>${escapeHtml(d.profiles?.username||'مستخدم')}</b>${badgeHtml(d.profiles)} تبرّع بـ <b style="color:var(--gold)">${d.amount}</b> نقطة لدعم الفصل ${d.chapters?.chapter_number}</span>
+        <span class="muted" style="font-size:10.5px;margin-right:auto;white-space:nowrap">${timeAgo(d.created_at)}</span>
+      </div>`;
+    }
+    const c = item.data;
+    return `<div class="row" style="align-items:flex-start;gap:10px;margin-bottom:18px">
       <img class="avatar" src="${c.profiles?.avatar_url||''}" onerror="this.style.background='#333'">
       <div style="flex:1">
-        <div class="row between"><span style="font-size:13px;font-weight:700">${escapeHtml(c.profiles?.username||'مستخدم')} ${badgeHtml(c.profiles?.subscription_plans)}</span><span class="muted" style="font-size:11px">${timeAgo(c.created_at)}</span></div>
+        <div class="row between"><span style="font-size:13px;font-weight:700">${escapeHtml(c.profiles?.username||'مستخدم')}${badgeHtml(c.profiles)}</span><span class="muted" style="font-size:11px">${timeAgo(c.created_at)}</span></div>
         <p style="font-size:13px;margin:4px 0;line-height:1.6">${escapeHtml(c.content)}</p>
-      </div></div>`).join('') : `<div class="empty-state"><i class="ri-chat-3-line"></i><h3>لا تعليقات</h3><p>كن أول من يعلّق</p></div>`}
-  </div>
-  <div class="reply-box"><input id="comment-input" placeholder="أضف تعليقاً..."><button class="send-btn" onclick="submitComment('${p.seriesId}')"><i class="ri-send-plane-fill"></i></button></div>`;
+      </div></div>`;
+  }).join('') : `<div class="empty-state"><i class="ri-chat-3-line"></i><h3>لا تعليقات</h3><p>كن أول من يعلّق</p></div>`;
 });
 async function submitComment(seriesId){
   if(!requireAuth()) return;
@@ -632,19 +703,22 @@ async function submitComment(seriesId){
   input.value=''; toast('تم نشر تعليقك'); renderRoute();
 }
 
-/* ---------------- CHAPTER ACCESS + READER ---------------- */
+/* ---------------- CHAPTER ACCESS + DIRECT LINK GATE + READER ---------------- */
 async function openChapter(chapterId){
   if(!chapterId) return toast('لا توجد فصول متاحة');
   const {data:chapter} = await sb.from('chapters').select('*, series(*)').eq('id',chapterId).single();
   if(!chapter) return toast('الفصل غير متاح');
   let unlocked = chapter.access_type==='free';
-  if(!unlocked && state.profile?.role==='admin') unlocked = true;
+  if(!unlocked && isAdminUser()) unlocked = true;
   if(!unlocked && chapter.access_type==='subscribers' && isSubscriber()) unlocked = true;
   if(!unlocked && chapter.access_type==='points'){
     const {data} = state.user ? await sb.from('chapter_purchases').select('*').eq('user_id',state.user.id).eq('chapter_id',chapterId).maybeSingle() : {data:null};
     if(data) unlocked = true;
   }
   if(!unlocked){ openLockSheet(chapter); return; }
+  if(chapter.direct_link_id && !sessionStorage.getItem('dlink_passed_'+chapterId)){
+    go('#/chapter-gate/'+chapterId); return;
+  }
   go('#/reader/'+chapterId);
 }
 function openLockSheet(chapter){
@@ -667,7 +741,7 @@ function openLockSheet(chapter){
 async function buyChapterNow(chapterId){
   const {data, error} = await sb.rpc('buy_chapter', {p_chapter_id: chapterId});
   if(error || !data?.ok){ toast(data?.msg || 'تعذرت العملية'); return; }
-  toast(data.msg); await refreshSession(); closeModal(); go('#/reader/'+chapterId);
+  toast(data.msg); await refreshSession(); closeModal(); openChapter(chapterId);
 }
 function openDonateSheet(chapterId){
   if(!requireAuth()) return;
@@ -684,6 +758,24 @@ async function submitDonate(chapterId){
   if(error || !data?.ok){ toast(data?.msg||'تعذرت العملية'); return; }
   toast(data.msg); await refreshSession(); closeModal();
 }
+
+/* Direct-link gate: يجب المتابعة عبر الرابط الذي حدده الأدمن لهذا الفصل قبل القراءة */
+route('#/chapter-gate/:chapterId', async (p)=>{
+  const {data:chapter} = await sb.from('chapters').select('*, series(*), direct_links(*)').eq('id',p.chapterId).single();
+  if(!chapter || !chapter.direct_links){ go('#/reader/'+p.chapterId); return; }
+  const dlink = chapter.direct_links;
+  document.getElementById('app').innerHTML = `${backHeader('قبل القراءة')}
+  <div class="locked-banner">
+    <i class="ri-link" style="font-size:36px;color:var(--accent)"></i>
+    <h3 style="margin:10px 0 6px">يرجى المتابعة عبر الرابط أولاً</h3>
+    <p class="muted" style="font-size:12.5px;margin-bottom:16px">اضغط "متابعة" ثم عد هنا لقراءة الفصل</p>
+    <a class="btn" href="${dlink.url}" target="_blank" onclick="trackDirectLinkClick('${dlink.id}');enableChapterRead('${p.chapterId}')">متابعة <i class="ri-external-link-line"></i></a>
+    <div style="height:10px"></div>
+    <button class="btn ghost" id="read-now-btn" disabled onclick="sessionStorage.setItem('dlink_passed_${p.chapterId}','1');go('#/reader/${p.chapterId}')">قراءة الفصل الآن</button>
+  </div>`;
+});
+function enableChapterRead(chapterId){ setTimeout(()=>{ const b=document.getElementById('read-now-btn'); if(b) b.disabled=false; }, 4000); }
+async function trackDirectLinkClick(id){ const {data} = await sb.from('direct_links').select('clicks').eq('id',id).single(); await sb.from('direct_links').update({clicks:(data?.clicks||0)+1}).eq('id',id); }
 
 route('#/reader/:chapterId', async (p)=>{
   const app = document.getElementById('app');
@@ -710,6 +802,33 @@ async function setReaderMode(mode, chapterId){
   const {data:chapter} = await sb.from('chapters').select('*, series(*)').eq('id',chapterId).single();
   renderReader(chapter);
 }
+async function getNextChapter(chapter){
+  const {data} = await sb.from('chapters').select('*').eq('series_id', chapter.series_id).gt('chapter_number', chapter.chapter_number).order('chapter_number').limit(1);
+  return data?.[0] || null;
+}
+function chapterEndCardHtml(chapter, nextChapter){
+  return `<div style="padding:24px 16px;text-align:center">
+    <i class="ri-checkbox-circle-fill" style="font-size:40px;color:var(--accent)"></i>
+    <h3 style="margin:10px 0 4px">أنهيت الفصل ${chapter.chapter_number}</h3>
+    <p class="muted" style="font-size:12.5px;margin-bottom:16px">${escapeHtml(chapter.series?.title||'')}</p>
+    <div class="row" style="gap:10px;margin-bottom:14px">
+      <button class="btn outline" style="flex:1" onclick="openRatingSheet('${chapter.series_id}')"><i class="ri-star-line"></i> تقييم العمل</button>
+      ${nextChapter?`<button class="btn" style="flex:1" onclick="openChapter('${nextChapter.id}')">الفصل التالي <i class="ri-arrow-left-line"></i></button>`:`<a class="btn" style="flex:1" href="#/series/${chapter.series_id}">عودة للعمل</a>`}
+    </div>
+    <div id="ad-reader-end" class="ad-slot"></div>
+  </div>`;
+}
+async function renderChapterEndCard(chapter){
+  const next = await getNextChapter(chapter);
+  const el = document.getElementById('chapter-end-card');
+  if(el){ el.innerHTML = chapterEndCardHtml(chapter, next); renderAdSlot('ad-reader-end','reader_end'); }
+}
+async function showPagedEndScreen(chapterId){
+  const {data:chapter} = await sb.from('chapters').select('*, series(*)').eq('id',chapterId).single();
+  const next = await getNextChapter(chapter);
+  document.getElementById('app').innerHTML = `${backHeader('نهاية الفصل')}${chapterEndCardHtml(chapter, next)}`;
+  renderAdSlot('ad-reader-end','reader_end');
+}
 function renderReader(chapter){
   const app = document.getElementById('app');
   document.body.style.background = '#050505';
@@ -718,9 +837,13 @@ function renderReader(chapter){
     <div class="reader-top"><button class="icon-btn" onclick="closeReader()"><i class="ri-close-line"></i></button>
       <span style="font-size:13px;font-weight:700">${escapeHtml(chapter.series?.title||'')} - ف${chapter.chapter_number}</span>
       <button class="icon-btn" onclick="openReaderSettings('${chapter.id}')"><i class="ri-settings-3-line"></i></button></div>
-    <div style="padding-top:56px;padding-bottom:70px">${state.readerPages.map(pg=>`<img class="reader-page" src="${pg.image_url}" loading="lazy">`).join('')}</div>
+    <div id="ad-before-reader" class="ad-slot" style="margin:60px 16px 6px"></div>
+    <div style="padding-bottom:70px">${state.readerPages.map(pg=>`<img class="reader-page" src="${pg.image_url}" loading="lazy">`).join('')}
+      <div id="chapter-end-card"></div></div>
     <div class="reader-toolbar"><button class="btn gold sm" onclick="openDonateSheet('${chapter.id}')"><i class="ri-heart-fill"></i> دعم الفصل</button>
       <button class="btn ghost sm" onclick="saveChapterOffline('${chapter.id}')"><i class="ri-download-2-line"></i> حفظ للقراءة لاحقاً</button></div>`;
+    renderAdSlot('ad-before-reader','before_reader');
+    renderChapterEndCard(chapter);
   } else {
     renderPagedView(chapter);
   }
@@ -733,6 +856,7 @@ function renderPagedView(chapter){
   <div class="reader-top"><button class="icon-btn" onclick="closeReader()"><i class="ri-close-line"></i></button>
     <span style="font-size:12.5px">${state.readerIdx+1} / ${state.readerPages.length}</span>
     <button class="icon-btn" onclick="openReaderSettings('${chapter.id}')"><i class="ri-settings-3-line"></i></button></div>
+  ${state.readerIdx===0?`<div id="ad-before-reader" class="ad-slot" style="margin:60px 16px 0"></div>`:''}
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:56px 0 80px">
     <img src="${pg.image_url}" style="max-height:80vh;object-fit:contain">
   </div>
@@ -741,10 +865,13 @@ function renderPagedView(chapter){
     <button class="btn gold sm" onclick="openDonateSheet('${chapter.id}')"><i class="ri-heart-fill"></i></button>
     <button class="page-nav-btn" onclick="pageNav('${dir==='rtl'?'prev':'next'}','${chapter.id}')"><i class="ri-arrow-${dir==='rtl'?'right':'left'}-s-line"></i></button>
   </div>`;
+  if(state.readerIdx===0) renderAdSlot('ad-before-reader','before_reader');
 }
 function pageNav(dir, chapterId){
-  if(dir==='next' && state.readerIdx < state.readerPages.length-1) state.readerIdx++;
-  else if(dir==='prev' && state.readerIdx > 0) state.readerIdx--;
+  if(dir==='next'){
+    if(state.readerIdx < state.readerPages.length-1) state.readerIdx++;
+    else { showPagedEndScreen(chapterId); return; }
+  } else if(dir==='prev' && state.readerIdx > 0) state.readerIdx--;
   sb.from('chapters').select('*, series(*)').eq('id',chapterId).single().then(({data})=>renderPagedView(data));
 }
 function openReaderSettings(chapterId){
@@ -762,7 +889,6 @@ function openReaderSettings(chapterId){
 }
 function closeReader(){ document.body.style.background=''; history.back(); }
 
-/* offline save via IndexedDB */
 function idbOpen(){ return new Promise((res,rej)=>{ const req = indexedDB.open('mangax_offline',1); req.onupgradeneeded = ()=>{ req.result.createObjectStore('chapters',{keyPath:'id'}); }; req.onsuccess=()=>res(req.result); req.onerror=()=>rej(req.error); }); }
 async function saveChapterOffline(chapterId){
   openCenter(`<i class="ri-download-2-line" style="font-size:40px;color:var(--accent);margin-bottom:10px"></i><h3 style="margin:0 0 14px">جاري حفظ الفصل...</h3>
@@ -826,22 +952,25 @@ route('#/points-store', async ()=>{
   if(!requireAuth()) return;
   await refreshSession();
   const {data:settings} = await sb.from('site_settings').select('*').eq('key','points_price').single();
-  const price = settings?.value || {currency:'usd', price_per_point:1};
+  const price = settings?.value || {currency:'SAR', price_per_point:1};
+  const {data:recentTx} = await sb.from('points_transactions').select('*').eq('user_id',state.user.id).order('created_at',{ascending:false}).limit(3);
+  const labels = {admin_add:'إضافة من الإدارة',admin_remove:'خصم من الإدارة',buy_chapter:'شراء فصل',donate_chapter:'تبرع لفصل',send_points:'إرسال نقاط',receive_points:'استلام نقاط',buy_avatar:'شراء بروفايل',monthly_bonus:'مكافأة شهرية'};
   document.getElementById('app').innerHTML = topbarSimple('متجر النقاط',{search:false}) + `
   <div style="padding:0 16px">
-    <div class="card" style="background:linear-gradient(135deg,var(--gold),#fbbf24);border-radius:18px;padding:20px;text-align:center;margin-bottom:16px">
-      <p style="color:#3a2a00;font-size:12.5px;font-weight:700">رصيدك الحالي</p>
-      <h2 style="color:#3a2a00;font-size:34px;margin:4px 0;font-weight:900"><i class="ri-coin-fill"></i> ${myPoints()}</h2>
-      <p style="color:#3a2a00;font-size:11px"> السعر لكل 100: ${price.price_per_point} ${price.currency}</p>
+    <div class="points-hero">
+      <i class="ri-coin-fill points-hero-icon"></i>
+      <p style="color:#3a2a00;font-size:12.5px;font-weight:700;position:relative">رصيدك الحالي</p>
+      <h2 style="color:#3a2a00;font-size:36px;margin:4px 0;font-weight:900;position:relative">${myPoints()}</h2>
+      <p style="color:#3a2a00;font-size:11px;position:relative">سعر النقطة الواحدة: ${price.price_per_point} ${price.currency}</p>
     </div>
-    <div class="grid2" style="margin-bottom:16px">
-      <button class="btn gold" onclick="go('#/buy-points')"><i class="ri-shopping-cart-2-line"></i> شراء نقاط</button>
-      <button class="btn ghost" onclick="go('#/send-points')"><i class="ri-send-plane-line"></i> إرسال نقاط</button>
+    <div class="points-action-grid">
+      <div class="points-action-btn" onclick="go('#/buy-points')"><i class="ri-shopping-cart-2-line"></i><b>شراء نقاط</b><span>اطلب شحن رصيدك</span></div>
+      <div class="points-action-btn" onclick="go('#/send-points')"><i class="ri-send-plane-line"></i><b>إرسال نقاط</b><span>لمستخدم آخر</span></div>
+      <div class="points-action-btn" onclick="go('#/avatar-store')"><i class="ri-user-star-line"></i><b>متجر البروفيلات</b><span>خصص شخصيتك</span></div>
+      <div class="points-action-btn" onclick="go('#/points-history')"><i class="ri-history-line"></i><b>سجل النقاط</b><span>كل معاملاتك</span></div>
     </div>
-    <div class="grid2" style="margin-bottom:20px">
-      <button class="btn outline" onclick="go('#/avatar-store')"><i class="ri-user-star-line"></i> متجر البروفيلات</button>
-      <button class="btn outline" onclick="go('#/points-history')"><i class="ri-history-line"></i> سجل النقاط</button>
-    </div>
+    ${recentTx?.length?`<div class="section-head" style="margin-top:6px"><h3>آخر المعاملات</h3><a href="#/points-history">عرض الكل</a></div>
+    <div class="card" style="background:var(--card);border-radius:14px;padding:4px 14px">${recentTx.map(t=>`<div class="tx-row"><span>${labels[t.type]||t.type}</span><span style="color:${t.amount>=0?'var(--accent)':'var(--danger)'};font-weight:800">${t.amount>=0?'+':''}${t.amount}</span></div>`).join('')}</div>`:''}
   </div>${bottomNav('#/points-store')}`;
 });
 route('#/buy-points', async ()=>{
@@ -886,8 +1015,8 @@ route('#/points-history', async ()=>{
   if(!requireAuth()) return;
   document.getElementById('app').innerHTML = `${backHeader('سجل النقاط')}<div id="ptx-list" style="padding:10px 16px"><div class="spinner"></div></div>`;
   const {data} = await sb.from('points_transactions').select('*').eq('user_id',state.user.id).order('created_at',{ascending:false}).limit(100);
-  const labels = {admin_add:'إضافة من الإدارة',admin_remove:'خصم من الإدارة',buy_chapter:'شراء فصل',donate_chapter:'تبرع لفصل',send_points:'إرسال نقاط',receive_points:'استلام نقاط',buy_avatar:'شراء بروفايل'};
-  document.getElementById('ptx-list').innerHTML = (data&&data.length) ? `<div class="card">${data.map(t=>`
+  const labels = {admin_add:'إضافة من الإدارة',admin_remove:'خصم من الإدارة',buy_chapter:'شراء فصل',donate_chapter:'تبرع لفصل',send_points:'إرسال نقاط',receive_points:'استلام نقاط',buy_avatar:'شراء بروفايل',monthly_bonus:'مكافأة شهرية'};
+  document.getElementById('ptx-list').innerHTML = (data&&data.length) ? `<div class="card" style="background:var(--card);border-radius:14px;padding:4px 14px">${data.map(t=>`
     <div class="tx-row"><span>${labels[t.type]||t.type}</span><span style="color:${t.amount>=0?'var(--accent)':'var(--danger)'};font-weight:800">${t.amount>=0?'+':''}${t.amount}</span></div>`).join('')}</div>` :
     `<div class="empty-state"><i class="ri-history-line"></i><h3>لا توجد معاملات</h3></div>`;
 });
@@ -896,15 +1025,19 @@ route('#/points-history', async ()=>{
 route('#/avatar-store', async ()=>{
   if(!requireAuth()) return;
   document.getElementById('app').innerHTML = `${backHeader('متجر البروفيلات')}<div id="avs-wrap" style="padding:10px 16px"><div class="spinner"></div></div>`;
-  const {data:avatars} = await sb.from('avatar_store').select('*').eq('is_active',true).order('created_at',{ascending:false});
+  const {data:avatars} = await sb.from('avatar_store').select('*').eq('is_active',true).order('requires_tier').order('created_at',{ascending:false});
   const {data:owned} = await sb.from('user_avatars').select('avatar_id').eq('user_id',state.user.id);
   const ownedIds = (owned||[]).map(o=>o.avatar_id);
+  const myT = effectiveTier();
+  const tierLabels = {1:'محارب+',2:'أساطير+',3:'أسلاف فقط'};
   document.getElementById('avs-wrap').innerHTML = (avatars&&avatars.length) ? `<div class="grid3">${avatars.map(a=>{
     const has = ownedIds.includes(a.id);
-    return `<div class="avatar-store-item">
+    const locked = a.requires_tier > myT && !has;
+    return `<div class="avatar-store-item ${locked?'locked':''}">
       <img src="${a.image_url}">
-      <div class="price">${has?'<i class="ri-checkbox-circle-fill" style="color:var(--accent)"></i> تملكها':a.price_points+' نقطة'}</div>
-      <button class="btn ${has?'ghost':'gold'} sm" style="width:100%;margin-top:6px" onclick="${has?`setActiveAvatar('${a.image_url}')`:`buyAvatarNow('${a.id}')`}">${has?'استخدام':'شراء'}</button>
+      ${a.is_animated?'<span class="chip gold" style="position:absolute;top:6px;left:6px;font-size:9px">GIF</span>':''}
+      <div class="price">${has?'<i class="ri-checkbox-circle-fill" style="color:var(--accent)"></i> تملكها':locked?`<i class="ri-lock-line"></i> ${tierLabels[a.requires_tier]}`:a.price_points===0?'مجاني':a.price_points+' نقطة'}</div>
+      <button class="btn ${has?'ghost':locked?'outline':a.price_points===0?'ghost':'gold'} sm" style="width:100%;margin-top:6px" ${locked?'disabled':''} onclick="${has?`setActiveAvatar('${a.image_url}')`:`buyAvatarNow('${a.id}')`}">${has?'استخدام':locked?'مقفل':a.price_points===0?'احصل عليها':'شراء'}</button>
     </div>`;
   }).join('')}</div>` : `<div class="empty-state"><i class="ri-user-star-line"></i><h3>لا توجد بروفيلات حالياً</h3></div>`;
 });
@@ -927,7 +1060,7 @@ route('#/profile', async ()=>{
   <div style="padding:10px 16px">
     <div class="row" style="gap:12px;margin-bottom:18px">
       <img class="avatar" style="width:64px;height:64px" src="${p.avatar_url||''}" onerror="this.style.background='#333'">
-      <div><h3 style="margin:0">${escapeHtml(p.full_name||p.username||'مستخدم')} ${badgeHtml(p.subscription_plans)}</h3>
+      <div><h3 style="margin:0">${escapeHtml(p.full_name||p.username||'مستخدم')} ${badgeHtml(p)}</h3>
       <p class="muted" style="font-size:12.5px;margin:2px 0">${escapeHtml(p.email||'')}</p>
       <span class="points-pill"><i class="ri-coin-fill"></i> ${p.points||0} نقطة</span></div>
     </div>
@@ -955,16 +1088,23 @@ async function doLogout(){ await sb.auth.signOut(); state.user=null; state.profi
 route('#/edit-profile', async ()=>{
   if(!requireAuth()) return;
   const p = state.profile||{};
+  const canCustomColor = isAdminUser() || myTier()>=1;
   document.getElementById('app').innerHTML = `${backHeader('تعديل الملف الشخصي')}
   <div style="padding:10px 20px">
+    <div class="center" style="margin-bottom:20px">
+      <img class="avatar" style="width:84px;height:84px;margin:0 auto 10px" src="${p.avatar_url||''}" onerror="this.style.background='#333'">
+      <a class="btn outline sm" href="#/avatar-store">تغيير الصورة من المتجر</a>
+    </div>
     <div class="field"><label>الاسم الكامل</label><div class="input-wrap"><i class="ri-user-line"></i><input id="ep-name" value="${escapeHtml(p.full_name||'')}"></div></div>
     <div class="field"><label>اسم المستخدم</label><div class="input-wrap"><i class="ri-at-line"></i><input id="ep-username" value="${escapeHtml(p.username||'')}"></div></div>
-    <div class="field"><label>رابط الصورة الشخصية (أو اشترِ من متجر البروفيلات)</label><div class="input-wrap"><i class="ri-image-line"></i><input id="ep-avatar" value="${escapeHtml(p.avatar_url||'')}"></div></div>
+    ${canCustomColor?`<div class="field"><label>لون البادج الخاص بك</label><div class="input-wrap" style="padding:6px 12px"><input id="ep-badge-color" type="color" value="${p.custom_badge_color||p.subscription_plans?.badge_color||'#22c55e'}" style="width:100%;height:38px;padding:0;border:none;background:transparent"></div></div>`:''}
     <button class="btn" onclick="saveProfile()">حفظ التغييرات</button>
   </div>`;
 });
 async function saveProfile(){
-  const update = { full_name: document.getElementById('ep-name').value, username: document.getElementById('ep-username').value, avatar_url: document.getElementById('ep-avatar').value };
+  const update = { full_name: document.getElementById('ep-name').value, username: document.getElementById('ep-username').value };
+  const colorInput = document.getElementById('ep-badge-color');
+  if(colorInput) update.custom_badge_color = colorInput.value;
   const {error} = await sb.from('profiles').update(update).eq('id',state.user.id);
   if(error) return toast('تعذر الحفظ (اسم المستخدم مستخدم؟)');
   await refreshSession(); toast('تم الحفظ'); go('#/profile');
@@ -983,25 +1123,51 @@ async function pickTheme(name){
   toast('تم تغيير اللون');
 }
 
-/* ---------------- SUBSCRIPTIONS ---------------- */
+/* ---------------- SUBSCRIPTIONS (مجمّعة حسب المستوى مع تبديل شهري/سنوي) ---------------- */
 route('#/subscriptions', async ()=>{
   if(!requireAuth()) return;
   document.getElementById('app').innerHTML = `${backHeader('الاشتراكات والباقات')}<div id="plans-wrap" style="padding:10px 16px"><div class="spinner"></div></div>`;
   const {data:plans} = await sb.from('subscription_plans').select('*').eq('is_active',true).order('sort_order');
   const {data:myReq} = await sb.from('subscription_requests').select('*').eq('user_id',state.user.id).order('created_at',{ascending:false}).limit(1);
   const pending = myReq?.[0]?.status==='pending';
-  document.getElementById('plans-wrap').innerHTML = `
-  ${isSubscriber()?`<div class="locked-banner" style="border-color:var(--accent)"><i class="ri-vip-crown-fill" style="font-size:30px;color:var(--accent)"></i><h3>أنت مشترك بالفعل ✓</h3><p class="muted">ينتهي اشتراكك في ${state.profile.subscription_end?new Date(state.profile.subscription_end).toLocaleDateString('ar'):''}</p></div>`:''}
-  ${pending?`<div class="locked-banner"><i class="ri-time-line" style="font-size:30px;color:var(--accent)"></i><h3>طلبك قيد المراجعة</h3></div>`:''}
-  ${(plans||[]).map(pl=>`
-  <div style="background:var(--card);border-radius:16px;padding:18px;margin-bottom:14px;border:1px solid var(--border)">
-    <div class="row between"><h3 style="margin:0">${escapeHtml(pl.name)} ${badgeHtml(pl)}</h3><span style="color:var(--accent);font-weight:900;font-size:18px">${pl.price} ${pl.currency}</span></div>
-    <p class="muted" style="font-size:12px;margin:4px 0 10px">${pl.duration_days} يوم</p>
-    ${(pl.features||[]).map(f=>`<div class="row" style="gap:8px;margin-bottom:6px"><i class="ri-checkbox-circle-fill" style="color:var(--accent)"></i><span style="font-size:13px">${escapeHtml(f)}</span></div>`).join('')}
-    <button class="btn" style="margin-top:10px" ${pending||isSubscriber()?'disabled':''} onclick="requestSubscription('${pl.id}')">${isSubscriber()?'مفعّل':pending?'قيد المراجعة':'اشترك الآن'}</button>
-  </div>`).join('') || '<p class="muted center">لا توجد باقات متاحة حالياً</p>'}`;
+  const subscribed = isSubscriber();
+  const groups = {1:[],2:[],3:[]};
+  (plans||[]).forEach(pl=>{ if(groups[pl.tier]) groups[pl.tier].push(pl); });
+  window.__tierPlans = {};
+  let html = '';
+  if(subscribed) html += `<div class="locked-banner" style="border-color:var(--accent)"><i class="ri-vip-crown-fill" style="font-size:30px;color:var(--accent)"></i><h3>أنت مشترك بالفعل ✓</h3><p class="muted">ينتهي اشتراكك في ${state.profile.subscription_end?new Date(state.profile.subscription_end).toLocaleDateString('ar'):''}. ستُسحب جميع الميزات تلقائياً عند الانتهاء حتى تجدّد.</p></div>`;
+  if(pending) html += `<div class="locked-banner"><i class="ri-time-line" style="font-size:30px;color:var(--accent)"></i><h3>طلبك قيد المراجعة</h3></div>`;
+  for(const tier of [1,2,3]){
+    const g = groups[tier]; if(!g.length) continue;
+    const monthly = g.find(pl=>pl.billing_period==='monthly'); const yearly = g.find(pl=>pl.billing_period==='yearly');
+    window.__tierPlans[tier] = {monthly, yearly};
+    const isThisActive = subscribed && (state.profile?.subscription_plan_id===monthly?.id || state.profile?.subscription_plan_id===yearly?.id);
+    html += `<div class="card tier-card">
+      <div class="row" style="gap:10px;margin-bottom:10px">
+        <div class="btn-icon-circle" style="background:var(--accent-soft);color:var(--accent);font-size:20px"><i class="${TIER_ICONS[tier]}"></i></div>
+        <h3 style="margin:0">${TIER_NAMES[tier]} ${isThisActive?'<span class="chip">مفعّلة</span>':''}</h3>
+      </div>
+      <div class="row" style="gap:8px;margin-bottom:12px">
+        <button class="pill toggle-billing active" data-tier="${tier}" data-period="monthly" onclick="switchBilling(${tier},'monthly')">شهري</button>
+        ${yearly?`<button class="pill toggle-billing" data-tier="${tier}" data-period="yearly" onclick="switchBilling(${tier},'yearly')">سنوي <span style="color:var(--gold)">-20%</span></button>`:''}
+      </div>
+      <div id="tier-price-${tier}"><h2 style="margin:0;font-size:24px;color:var(--accent)">${monthly?.price||0} <span style="font-size:13px;color:var(--muted)">${monthly?.currency||'SAR'} / شهر</span></h2></div>
+      <div style="margin:12px 0">${(monthly?.features||yearly?.features||[]).map(f=>`<div class="row" style="gap:8px;margin-bottom:6px"><i class="ri-checkbox-circle-fill" style="color:var(--accent)"></i><span style="font-size:13px">${escapeHtml(f)}</span></div>`).join('')}</div>
+      <button class="btn" ${pending||subscribed?'disabled':''} onclick="requestSubscription(document.getElementById('tier-selected-plan-${tier}').value)">${subscribed?'مفعّلة':pending?'قيد المراجعة':'اشترك الآن'}</button>
+      <input type="hidden" id="tier-selected-plan-${tier}" value="${monthly?.id||''}">
+    </div>`;
+  }
+  document.getElementById('plans-wrap').innerHTML = html || '<p class="muted center">لا توجد باقات متاحة حالياً</p>';
 });
+function switchBilling(tier, period){
+  document.querySelectorAll(`.toggle-billing[data-tier="${tier}"]`).forEach(b=>b.classList.toggle('active', b.dataset.period===period));
+  const plan = window.__tierPlans?.[tier]?.[period];
+  if(!plan) return;
+  document.getElementById(`tier-price-${tier}`).innerHTML = `<h2 style="margin:0;font-size:24px;color:var(--accent)">${plan.price} <span style="font-size:13px;color:var(--muted)">${plan.currency} / ${period==='monthly'?'شهر':'سنة'}</span></h2>`;
+  document.getElementById(`tier-selected-plan-${tier}`).value = plan.id;
+}
 async function requestSubscription(planId){
+  if(!planId) return toast('اختر باقة أولاً');
   await sb.from('subscription_requests').insert({user_id:state.user.id, plan_id:planId, status:'pending'});
   await sb.from('profiles').update({subscription_status:'pending'}).eq('id',state.user.id);
   toast('تم إرسال طلب الاشتراك، سيتم مراجعته من قبل الإدارة'); renderRoute();
@@ -1018,7 +1184,7 @@ route('#/news', async ()=>{
       <p style="font-size:13px;color:var(--muted);margin-top:8px;line-height:1.6">${escapeHtml(n.content||'')}</p></div></div>`).join('') : `<div class="empty-state"><i class="ri-newspaper-line"></i><h3>لا أخبار حالياً</h3></div>`;
 });
 
-/* ---------------- POLLS ---------------- */
+/* ---------------- POLLS (مع صورة + عداد وقت) ---------------- */
 route('#/polls', async ()=>{
   document.getElementById('app').innerHTML = `${backHeader('التصويتات')}<div id="polls-wrap" style="padding:10px 16px"><div class="spinner"></div></div>`;
   const {data:polls} = await sb.from('polls').select('*').eq('is_active',true).order('created_at',{ascending:false});
@@ -1032,17 +1198,29 @@ route('#/polls', async ()=>{
     const total = allVotes?.length||0;
     const counts = (pl.options||[]).map((_,i)=>allVotes?.filter(v=>v.option_index===i).length||0);
     const voted = myVotes[pl.id]!==undefined;
-    return `<div style="background:var(--card);border-radius:16px;padding:16px;margin-bottom:14px">
-      <h3 style="font-size:14.5px;margin:0 0 12px">${escapeHtml(pl.question)}</h3>
+    const timeLeft = pl.ends_at ? pollTimeLeft(pl.ends_at) : null;
+    return `<div class="poll-card">
+      ${pl.image_url?`<img src="${pl.image_url}" class="poll-image">`:''}
+      <div style="padding:16px">
+      <h3 style="font-size:14.5px;margin:0 0 4px">${escapeHtml(pl.question)}</h3>
+      ${timeLeft?`<p class="muted" style="font-size:11px;margin-bottom:10px"><i class="ri-time-line"></i> ${timeLeft}</p>`:''}
       ${(pl.options||[]).map((opt,i)=>{
         const pct = total ? Math.round(counts[i]*100/total) : 0;
         return voted ? `<div style="margin-bottom:10px"><div class="row between" style="font-size:12.5px;margin-bottom:4px"><span>${escapeHtml(opt)} ${myVotes[pl.id]===i?'<i class="ri-checkbox-circle-fill" style="color:var(--accent)"></i>':''}</span><span class="muted">${pct}%</span></div><div class="progress-bar"><div class="fill" style="width:${pct}%"></div></div></div>`
         : `<button class="btn outline" style="margin-bottom:8px;justify-content:flex-start;padding:11px 16px" onclick="vote('${pl.id}',${i})">${escapeHtml(opt)}</button>`;
       }).join('')}
       <p class="muted" style="font-size:11px;margin-top:6px">${total} صوت</p>
-    </div>`;
+      </div></div>`;
   })).then(arr=>arr.join('')) : `<div class="empty-state"><i class="ri-bar-chart-box-line"></i><h3>لا تصويتات حالياً</h3></div>`;
 });
+function pollTimeLeft(endsAt){
+  const diff = new Date(endsAt) - new Date();
+  if(diff<=0) return 'انتهى التصويت';
+  const days = Math.floor(diff/86400000);
+  if(days>0) return `ينتهي خلال ${days} يوم`;
+  const hours = Math.floor(diff/3600000);
+  return `ينتهي خلال ${hours} ساعة`;
+}
 async function vote(pollId, idx){
   if(!requireAuth()) return;
   const {error} = await sb.from('poll_votes').insert({poll_id:pollId, user_id:state.user.id, option_index:idx});
@@ -1050,60 +1228,107 @@ async function vote(pollId, idx){
   toast('تم تسجيل صوتك'); renderRoute();
 }
 
-/* ---------------- FORUM (الكل يقرأ، المشتركون فقط ينشرون) ---------------- */
+/* ---------------- FORUM (مفتوح للجميع، منشور واحد يومياً نصي، صور لمشتركي المحارب فأعلى) ---------------- */
 route('#/forum', async ()=>{
   if(!requireAuth()) return;
-  document.getElementById('app').innerHTML = `${backHeader('المنتدى')}<div id="forum-wrap" style="padding:10px 16px 90px"><div class="spinner"></div></div>
-  ${isSubscriber()?`<div class="fab" onclick="go('#/forum-new')"><i class="ri-add-line"></i></div>`:''}`;
-  const {data} = await sb.from('forum_posts').select('*, profiles(username,avatar_url,subscription_plans(badge_text,badge_color))').order('is_pinned',{ascending:false}).order('created_at',{ascending:false});
-  document.getElementById('forum-wrap').innerHTML = `
-  ${!isSubscriber()?`<div class="locked-banner" style="margin:0 0 16px"><i class="ri-information-line" style="font-size:26px;color:var(--accent)"></i>
-    <p style="font-size:12.5px;margin:8px 0 0">يمكنك قراءة المنتدى بحرية، لكن النشر متاح للمشتركين فقط — <a href="#/subscriptions" style="color:var(--accent);font-weight:700">اشترك الآن</a></p></div>`:''}
-  ${(data&&data.length) ? data.map(p=>`
-    <div style="background:var(--card);border-radius:14px;padding:14px;margin-bottom:10px" onclick="go('#/forum-post/${p.id}')">
-      <div class="row" style="gap:8px;margin-bottom:8px"><img class="avatar" style="width:30px;height:30px" src="${p.profiles?.avatar_url||''}"><span style="font-size:13px;font-weight:700">${escapeHtml(p.profiles?.username||'')} ${badgeHtml(p.profiles?.subscription_plans)}</span><span class="muted" style="font-size:11px">${timeAgo(p.created_at)}</span></div>
-      <h3 style="font-size:14.5px;margin:0 0 4px">${p.is_pinned?'<i class="ri-pushpin-fill" style="color:var(--accent)"></i> ':''}${escapeHtml(p.title)}</h3>
-      <p class="muted" style="font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(p.content)}</p>
-    </div>`).join('') : `<div class="empty-state"><i class="ri-discuss-line"></i><h3>لا مواضيع بعد</h3></div>`}`;
+  document.getElementById('app').innerHTML = `${backHeader('المنتدى')}<div id="forum-info" style="padding:0 16px"></div><div id="forum-wrap" style="padding:10px 16px 90px"><div class="spinner"></div></div>
+  <div class="fab" onclick="go('#/forum-new')"><i class="ri-add-line"></i></div>`;
+  const startOfDay = new Date(); startOfDay.setHours(0,0,0,0);
+  const {count:todayCount} = await sb.from('forum_posts').select('*',{count:'exact',head:true}).eq('user_id',state.user.id).gte('created_at', startOfDay.toISOString());
+  const usedToday = (todayCount||0)>=1 && !isAdminUser();
+  document.getElementById('forum-info').innerHTML = `<div class="card" style="margin-bottom:12px;padding:12px 14px;background:var(--card);border-radius:14px">
+    <div class="row" style="gap:8px"><i class="ri-information-line" style="color:var(--accent)"></i>
+    <span style="font-size:11.5px;color:var(--muted)">${usedToday ? 'استخدمت منشورك المجاني لهذا اليوم، عد غداً للنشر مجدداً' : 'يمكنك نشر موضوع نصي واحد يومياً. مشتركو باقة المحارب فأعلى يمكنهم إضافة صور'}</span></div></div>`;
+  const {data} = await sb.from('forum_posts').select(`*, profiles(${PROFILE_BADGE_FIELDS})`).order('is_pinned',{ascending:false}).order('created_at',{ascending:false});
+  document.getElementById('forum-wrap').innerHTML = (data&&data.length) ? data.map(post=>`
+    <div class="forum-card ${post.is_pinned?'pinned':''}" onclick="go('#/forum-post/${post.id}')">
+      ${post.image_url?`<img src="${post.image_url}" class="forum-thumb">`:''}
+      <div style="padding:14px">
+        <div class="row" style="gap:8px;margin-bottom:8px"><img class="avatar" style="width:28px;height:28px" src="${post.profiles?.avatar_url||''}"><span style="font-size:13px;font-weight:700">${escapeHtml(post.profiles?.username||'')}</span>${badgeHtml(post.profiles)}<span class="muted" style="font-size:11px;margin-right:auto">${timeAgo(post.created_at)}</span></div>
+        <h3 style="font-size:14.5px;margin:0 0 4px">${post.is_pinned?'<i class="ri-pushpin-fill" style="color:var(--accent)"></i> ':''}${escapeHtml(post.title)}</h3>
+        <p class="muted" style="font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(post.content)}</p>
+      </div></div>`).join('') : `<div class="empty-state"><i class="ri-discuss-line"></i><h3>لا مواضيع بعد</h3><p>كن أول من يبدأ نقاشاً</p></div>`;
 });
 route('#/forum-new', async ()=>{
   if(!requireAuth()) return;
-  if(!isSubscriber()){ toast('النشر للمشتركين فقط'); go('#/subscriptions'); return; }
+  __forumImageUrl = null;
+  const canImage = isAdminUser() || myTier()>=1;
   document.getElementById('app').innerHTML = `${backHeader('موضوع جديد')}
   <div style="padding:10px 20px">
     <div class="field"><label>العنوان</label><div class="input-wrap"><i class="ri-text"></i><input id="fp-title"></div></div>
     <div class="field"><label>المحتوى</label><textarea class="ta" id="fp-content"></textarea></div>
+    ${canImage ? `<div class="field"><label>صورة (اختياري)</label>
+      <input type="file" accept="image/*" id="fp-image-input" onchange="uploadForumImage(this.files[0])" style="color:var(--text)">
+      <div id="fp-image-preview" style="margin-top:8px"></div></div>`
+      : `<div class="card" style="margin-bottom:14px;padding:12px;background:var(--card);border-radius:12px"><p style="font-size:11.5px;color:var(--muted);margin:0"><i class="ri-lock-line"></i> اشترك في باقة المحارب لإضافة صور لمنشوراتك</p></div>`}
     <button class="btn" onclick="submitForumPost()">نشر</button>
   </div>`;
 });
+let __forumImageUrl = null;
+async function uploadForumImage(file){
+  if(!file) return;
+  const path=`forum/${state.user.id}_${Date.now()}_${file.name}`;
+  const {error} = await sb.storage.from('site-images').upload(path,file,{cacheControl:'3600',upsert:false});
+  if(error) return toast('فشل رفع الصورة');
+  const {data:{publicUrl}} = sb.storage.from('site-images').getPublicUrl(path);
+  __forumImageUrl = publicUrl;
+  document.getElementById('fp-image-preview').innerHTML = `<img src="${publicUrl}" style="max-height:120px;border-radius:10px">`;
+  toast('تم رفع الصورة');
+}
 async function submitForumPost(){
   const title = document.getElementById('fp-title').value.trim();
   const content = document.getElementById('fp-content').value.trim();
   if(!title||!content) return toast('أكمل الحقول');
-  const {error} = await sb.from('forum_posts').insert({user_id:state.user.id,title,content});
-  if(error) return toast('تعذر النشر (تحتاج اشتراكاً فعالاً)');
+  const payload = {user_id:state.user.id,title,content};
+  if(__forumImageUrl) payload.image_url = __forumImageUrl;
+  const {error} = await sb.from('forum_posts').insert(payload);
+  if(error){
+    if(error.message?.includes('DAILY_LIMIT_REACHED')) toast('يمكنك نشر موضوع واحد فقط يومياً');
+    else if(error.message?.includes('IMAGE_REQUIRES_WARRIOR')) toast('إضافة الصور تتطلب باقة المحارب');
+    else toast('تعذر النشر');
+    return;
+  }
+  __forumImageUrl = null;
   toast('تم نشر الموضوع'); go('#/forum');
 }
 route('#/forum-post/:id', async (p)=>{
   if(!requireAuth()) return;
-  const {data:post} = await sb.from('forum_posts').select('*, profiles(username,avatar_url,subscription_plans(badge_text,badge_color))').eq('id',p.id).single();
-  const {data:replies} = await sb.from('forum_replies').select('*, profiles(username,avatar_url,subscription_plans(badge_text,badge_color))').eq('post_id',p.id).order('created_at');
+  const {data:post} = await sb.from('forum_posts').select(`*, profiles(${PROFILE_BADGE_FIELDS})`).eq('id',p.id).single();
+  const {data:replies} = await sb.from('forum_replies').select(`*, profiles(${PROFILE_BADGE_FIELDS})`).eq('post_id',p.id).order('created_at');
+  const authorActive = post?.profiles?.subscription_status==='active' && post?.profiles?.subscription_end && new Date(post.profiles.subscription_end)>new Date();
+  const authorTier = authorActive ? (post.profiles.subscription_plans?.tier||0) : 0;
   document.getElementById('app').innerHTML = `${backHeader('الموضوع')}
   <div style="padding:10px 16px 90px">
-    <div style="background:var(--card);border-radius:14px;padding:14px;margin-bottom:14px">
-      <div class="row" style="gap:8px;margin-bottom:8px"><img class="avatar" style="width:30px;height:30px" src="${post?.profiles?.avatar_url||''}"><span style="font-size:13px;font-weight:700">${escapeHtml(post?.profiles?.username||'')} ${badgeHtml(post?.profiles?.subscription_plans)}</span></div>
+    <div class="card" style="margin-bottom:14px;background:var(--card);border-radius:14px;padding:16px">
+      <div class="row" style="gap:8px;margin-bottom:8px"><img class="avatar" style="width:30px;height:30px" src="${post?.profiles?.avatar_url||''}"><span style="font-size:13px;font-weight:700">${escapeHtml(post?.profiles?.username||'')}</span>${badgeHtml(post?.profiles)}</div>
       <h3 style="margin:0 0 6px">${escapeHtml(post?.title||'')}</h3>
+      ${post?.image_url?`<img src="${post.image_url}" style="width:100%;border-radius:12px;margin-bottom:10px">`:''}
       <p style="font-size:13.5px;line-height:1.7">${escapeHtml(post?.content||'')}</p>
+      ${authorTier>=1 && post.user_id!==state.user.id ? `<button class="btn gold sm" style="margin-top:10px" onclick="openDonateUserSheet('${escapeHtml(post.profiles.username)}')"><i class="ri-heart-fill"></i> دعم الكاتب بالنقاط</button>` : ''}
     </div>
     <p class="muted" style="font-size:12px;margin-bottom:8px">${replies?.length||0} ردّ</p>
     ${(replies||[]).map(r=>`<div class="row" style="align-items:flex-start;gap:10px;margin-bottom:14px">
       <img class="avatar" style="width:32px;height:32px" src="${r.profiles?.avatar_url||''}">
-      <div><span style="font-size:12.5px;font-weight:700">${escapeHtml(r.profiles?.username||'')} ${badgeHtml(r.profiles?.subscription_plans)}</span><p style="font-size:13px;margin:2px 0">${escapeHtml(r.content)}</p></div>
+      <div><span style="font-size:12.5px;font-weight:700">${escapeHtml(r.profiles?.username||'')}</span>${badgeHtml(r.profiles)}<p style="font-size:13px;margin:2px 0">${escapeHtml(r.content)}</p></div>
     </div>`).join('')}
   </div>
-  ${isSubscriber()?`<div class="reply-box"><input id="reply-input" placeholder="أضف رداً..."><button class="send-btn" onclick="submitReply('${p.id}')"><i class="ri-send-plane-fill"></i></button></div>`
-  : `<div class="locked-banner" style="position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;border-radius:18px 18px 0 0"><p style="font-size:12.5px;margin:0">الرد متاح للمشتركين فقط</p></div>`}`;
+  <div class="reply-box"><input id="reply-input" placeholder="أضف رداً..."><button class="send-btn" onclick="submitReply('${p.id}')"><i class="ri-send-plane-fill"></i></button></div>`;
 });
+function openDonateUserSheet(username){
+  if(!requireAuth()) return;
+  openSheet(`<div class="sheet-handle"></div><h3>دعم ${escapeHtml(username)}</h3>
+  <p class="muted center" style="font-size:12.5px;margin-bottom:14px">رصيدك الحالي: ${myPoints()} نقطة</p>
+  <div class="input-wrap" style="margin-bottom:14px"><i class="ri-coin-line"></i><input id="donate-user-amt" type="number" placeholder="عدد النقاط" min="1"></div>
+  <div class="row" style="gap:10px"><button class="btn outline" onclick="closeModal()">إلغاء</button>
+  <button class="btn gold" onclick="submitDonateUser('${username}')">دعم</button></div>`);
+}
+async function submitDonateUser(username){
+  const amt = parseInt(document.getElementById('donate-user-amt').value);
+  if(!amt||amt<=0) return toast('أدخل عدداً صحيحاً');
+  const {data,error} = await sb.rpc('donate_to_user', {p_to_username:username, p_amount:amt});
+  if(error||!data?.ok){ toast(data?.msg||'تعذرت العملية'); return; }
+  toast(data.msg); await refreshSession(); closeModal();
+}
 async function submitReply(postId){
   if(!requireAuth()) return;
   const input = document.getElementById('reply-input'); const content = input.value.trim();
@@ -1113,22 +1338,15 @@ async function submitReply(postId){
   input.value=''; renderRoute();
 }
 
-/* ---------------- HELP ---------------- */
+/* ---------------- المساعدة والدعم: FAQ / الدعم / عن التطبيق ---------------- */
 route('#/help', async ()=>{
   document.getElementById('app').innerHTML = `${backHeader('المساعدة والدعم')}
   <div style="padding:10px 16px">
-    ${menuItem('ri-question-answer-line','الأسئلة الشائعة','toast("قريباً")')}
-    ${menuItem('ri-customer-service-2-line','تواصل مع الدعم','toast("راسلنا على البريد الإلكتروني")')}
-    ${menuItem('ri-information-line','عن التطبيق','toast("Mangax v1.0")')}
-  </div>`;
-});
-
-/* ---------------- INIT ---------------- */
-(async function init(){
-  await refreshSession();
-  if(state.profile?.theme_color) setTheme(state.profile.theme_color);
-  renderRoute();
-})();
-</script>
-</body>
-</html>
+    <a class="row between" style="background:var(--card);padding:16px;border-radius:14px;margin-bottom:10px" href="#/faq">
+      <div class="row" style="gap:10px"><i class="ri-question-answer-line" style="font-size:20px;color:var(--accent)"></i><span style="font-weight:700;font-size:14px">الأسئلة الشائعة</span></div>
+      <i class="ri-arrow-left-s-line muted"></i></a>
+    <a class="row between" style="background:var(--card);padding:16px;border-radius:14px;margin-bottom:10px" href="#/support-page">
+      <div class="row" style="gap:10px"><i class="ri-customer-service-2-line" style="font-size:20px;color:var(--accent)"></i><span style="font-weight:700;font-size:14px">الدعم والتواصل</span></div>
+      <i class="ri-arrow-left-s-line muted"></i></a>
+    <a class="row between" style="background:var(--card);padding:16px;border-radius:14px" href="#/about">
+      <div class
